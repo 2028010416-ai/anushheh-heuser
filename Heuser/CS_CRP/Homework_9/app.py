@@ -5,9 +5,10 @@ from flask import Flask, jsonify, redirect, render_template_string, request, sen
 
 app = Flask(__name__)
 BASE = Path(__file__).resolve().parent
-CS_CRP = BASE.parent
-GAME_DIR = CS_CRP / "Homework_6"
-PORTFOLIO_DIR = CS_CRP / "Homework_8"
+GAME_DIR = BASE / "game"
+PORTFOLIO_DIR = BASE / "portfolio"
+HOME_DIR = BASE / "home"
+API_DIR = BASE / "api"
 
 HOME_PAGE = """
 <!doctype html>
@@ -83,7 +84,7 @@ form.addEventListener('submit',async event=>{
 
 @app.get("/")
 def home():
-    return render_template_string(HOME_PAGE)
+    return send_from_directory(HOME_DIR, "index.html")
 
 @app.get("/game")
 def game_redirect():
@@ -111,7 +112,7 @@ def portfolio_assets(filename):
 
 @app.get("/api")
 def api_page():
-    return render_template_string(API_PAGE)
+    return send_from_directory(API_DIR, "index.html")
 
 @app.get("/api/search")
 def api_search():
