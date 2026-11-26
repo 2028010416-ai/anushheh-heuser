@@ -86,6 +86,10 @@ def home():
     return render_template_string(HOME_PAGE)
 
 @app.get("/game")
+def game_redirect():
+    return redirect("/game/")
+
+@app.get("/game/")
 def game():
     return send_from_directory(GAME_DIR, "index.html")
 
@@ -94,6 +98,10 @@ def game_assets(filename):
     return send_from_directory(GAME_DIR, filename)
 
 @app.get("/portfolio")
+def portfolio_redirect():
+    return redirect("/portfolio/")
+
+@app.get("/portfolio/")
 def portfolio():
     return send_from_directory(PORTFOLIO_DIR, "index.html")
 
