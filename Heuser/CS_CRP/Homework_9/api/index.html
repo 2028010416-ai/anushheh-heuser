@@ -1,0 +1,41 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book Discovery | Homework 9</title>
+<style>
+*{box-sizing:border-box}body{margin:0;padding:32px 18px;background:#eef4fa;color:#142b45;font-family:Arial,sans-serif}
+main{max-width:850px;margin:35px auto}a{color:#245d91}h1{font-size:clamp(34px,7vw,54px);margin:12px 0}
+p{line-height:1.6;color:#53677c}.search{display:flex;gap:10px;margin:25px 0}.search input{flex:1;min-width:0;padding:14px;border:1px solid #b9c9d8;border-radius:8px;font-size:16px}
+button{padding:14px 20px;border:0;border-radius:8px;background:#173d64;color:white;font-weight:bold;cursor:pointer}
+#results{display:grid;gap:12px}.book{padding:17px;background:white;border:1px solid #d5e0e9;border-radius:10px}.book h2{font-size:18px;margin:0 0 7px}.muted{font-size:13px;color:#6b7f91}
+@media(max-width:520px){.search{flex-direction:column}}
+</style></head>
+<body><main>
+<a href="/">← Back to Homework 9 home</a>
+<p>PUBLIC API PROJECT · OPEN LIBRARY</p><h1>Book Discovery Deck</h1>
+<p>Search the Open Library catalogue. Enter a title, author or subject to discover books.</p>
+<form class="search" id="search-form"><input id="query" name="q" placeholder="Try: Harry Potter, science, history..." required><button>Search books</button></form>
+<p id="status" aria-live="polite"></p><section id="results"></section>
+<script>
+const form=document.querySelector('#search-form'), query=document.querySelector('#query'), status=document.querySelector('#status'), results=document.querySelector('#results');
+form.addEventListener('submit',async event=>{
+ event.preventDefault(); const term=query.value.trim(); if(!term)return;
+ status.textContent='Searching the Open Library catalogue…'; results.innerHTML='';
+ try{
+  const response=await fetch('/api/search?q='+encodeURIComponent(term));
+  const data=await response.json(); if(!response.ok)throw new Error(data.error||'Search failed');
+  if(!data.books.length){status.textContent='No books found. Try another search.';return}
+  status.textContent='Found '+data.books.length+' results.';
+  data.books.forEach(book=>{
+   const article=document.createElement('article');article.className='book';
+   const title=document.createElement('h2');title.textContent=book.title;
+   const author=document.createElement('p');author.className='muted';author.textContent='Author: '+(book.author||'Not listed')+' · First published: '+(book.year||'Unknown');
+   article.append(title,author);
+   if(book.url){const link=document.createElement('a');link.href=book.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='View on Open Library';article.append(link)}
+   results.append(article);
+  });
+ }catch(error){status.textContent='Sorry, the search is unavailable right now. Please try again.';}
+});
+</script></main></body></html>
