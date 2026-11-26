@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Anush Heuser's Computer Science homework website">
+    <title>CS CRP | Heuser | Homework 6</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <span class="brand-mark">H</span>
+        <span>Heuser College</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#assignments">Assignments</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">CS CRP · Session 10 &amp; 11</p>
+          <h1>Welcome to my<br><em>Homework 6</em> project.</h1>
+          <p class="intro">This page is a simple introduction to Git, GitHub, repositories, and GitHub Pages.</p>
+          <a class="button" href="#assignments">View assignments <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="hero-card" aria-label="Project status">
+          <p>Project status</p>
+          <strong id="status">Ready</strong>
+          <div class="progress"><span></span></div>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">01 · About</p>
+          <h2>Learning the web, one commit at a time.</h2>
+        </div>
+        <p>My name is <strong>Anush Heuser</strong>. This project demonstrates how to organize web files, track changes with Git, publish a repository on GitHub, and host a live website with GitHub Pages.</p>
+      </section>
+
+      <section id="assignments" class="section assignments">
+        <div class="section-heading">
+          <p class="eyebrow">02 · Work</p>
+          <h2>Assignment checklist</h2>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <span class="number">01</span>
+            <h3>GitHub account</h3>
+            <p>Create a personal account and verify both a personal email address and the Heuser EDU email address.</p>
+          </article>
+          <article class="card">
+            <span class="number">02</span>
+            <h3>Repository</h3>
+            <p>Create a public repository and organize the files in the required <code>Heuser/CS_CRP/Homework_6</code> structure.</p>
+          </article>
+          <article class="card">
+            <span class="number">03</span>
+            <h3>GitHub Pages</h3>
+            <p>Deploy the website from the main branch and share both the repository link and the live page link.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <p class="eyebrow">03 · Finish</p>
+        <h2>Homework submission</h2>
+        <p>The website is built with HTML, CSS, and JavaScript.</p>
+        <button id="greeting-button" class="button" type="button">Get project greeting</button>
+        <p id="greeting" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <footer>
+      <p>CS CRP · Anush Heuser</p>
+      <p id="year"></p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
